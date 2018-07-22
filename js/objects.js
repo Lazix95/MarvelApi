@@ -79,32 +79,34 @@ function bookmarkOrUnbookmark(elem) {
                 bookmarkedHeroesObj.splice(i, 1);
             }
         }
-        localStorage.setItem("bookmarkedHeroesId", JSON.stringify(bookmarkedHeroesId));
-        localStorage.setItem("bookmarkedHeroesObj", JSON.stringify(bookmarkedHeroesObj));
     } else {
         elem.src = "./img/full star.png";
         bookmarkedHeroesId.push(elem.dataset.id);
         for (var i = 0; i < arrayOfTgumnnails.length; i++) {
             if (arrayOfTgumnnails[i].id == elem.dataset.id) {
                 bookmarkedHeroesObj.push(arrayOfTgumnnails[i]);
+                break;
             }
         }
-        localStorage.setItem("bookmarkedHeroesId", JSON.stringify(bookmarkedHeroesId));
-        localStorage.setItem("bookmarkedHeroesObj", JSON.stringify(bookmarkedHeroesObj));
+
     }
+    localStorage.setItem("bookmarkedHeroesId", JSON.stringify(bookmarkedHeroesId));
+    localStorage.setItem("bookmarkedHeroesObj", JSON.stringify(bookmarkedHeroesObj));
 }
 
 function loadBookmarked() {
     if (localStorage.getItem("bookmarkedHeroesId")) {
         bookmarkedHeroesId = JSON.parse(localStorage.getItem("bookmarkedHeroesId"));
         bookmarkedHeroesObj = JSON.parse(localStorage.getItem("bookmarkedHeroesObj"));
+
     }
+    console.log('​window.onload -> ', bookmarkedHeroesId);
+    console.log('​window.onload -> ', bookmarkedHeroesObj);
 }
 
 function viewYourBookmarkedHeroes(elem) {
     elem.innerHTML = "<img src='./img/full star.png'><img src='./img/empty star.png'><p>Browse All Heroes!!</p>";
-    elem.setAttribute("onclick","browseAll(this)");
-    console.log('​viewYourBookmarkedHeroes -> ',elem );
+    elem.setAttribute("onclick", "browseAll(this)");
     document.getElementById('js-heroesSection').innerHTML = "";
     var imgSrc = "./img/full star.png"
     k = 0;
@@ -130,15 +132,16 @@ function viewYourBookmarkedHeroes(elem) {
                 scndDiv.appendChild(div);
             }
         }
-         document.getElementById("js-heroesSection").appendChild(scndDiv);
-         k += 4;
+        document.getElementById("js-heroesSection").appendChild(scndDiv);
+        k += 4;
     }
-   
+
 }
 
-function browseAll(elem){
+function browseAll(elem) {
     elem.innerHTML = '<img src="img/full star.png"><p>Veiw your bookmarked heroes!!</p>';
     elem.setAttribute("onclick", "viewYourBookmarkedHeroes(this)");
+    document.getElementById('js-heroesSection').innerHTML = "";
     getApi();
 }
 
