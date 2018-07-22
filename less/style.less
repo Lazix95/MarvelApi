@@ -1,0 +1,263 @@
+/*
+* Variables
+*/
+
+@topAndBottomMargin: 30px;
+@marginBetweenThumbnails: 20px;
+@thumbnaillBackgroundColor: #7fffd4;
+@heroNamesColor: #000000;
+/*
+* Mixins
+*/
+
+.transform(@string) {
+    -webkit-transform: @string;
+    -moz-transform: @string;
+    -ms-transform: @string;
+    -o-transform: @string;
+}
+
+.box-shadow (@string) {
+    -webkit-box-shadow: @string;
+    -moz-box-shadow: @string;
+    box-shadow: @string;
+}
+
+/*
+* Global changes and special classes
+*/
+
+body {
+    margin: 0;
+    font-family: Arial;
+}
+
+body,
+html {
+    min-height: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+/*
+* My Custom Tooltip
+*/
+
+[tooltip] {
+    margin: 0 0 40px 0;
+    position: relative;
+    display: inline-block;
+}
+
+[tooltip]::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 4px 6px 0 6px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.7) transparent transparent transparent;
+    z-index: 99;
+    opacity: 0;
+}
+
+[tooltip-position='left']::before {
+    left: 0%;
+    top: 50%;
+    margin-left: -12px;
+    transform: translatey(-50%) rotate(-90deg)
+}
+
+[tooltip-position='top']::before {
+    left: 50%;
+}
+
+[tooltip-position='buttom']::before {
+    top: 100%;
+    margin-top: 8px;
+    transform: translateX(-50%) translatey(-100%) rotate(-180deg)
+}
+
+[tooltip-position='right']::before {
+    left: 100%;
+    top: 50%;
+    margin-left: 1px;
+    transform: translatey(-50%) rotate(90deg)
+}
+
+[tooltip]::after {
+    content: attr(tooltip);
+    position: absolute;
+    left: 50%;
+    top: -6px;
+    transform: translateX(-50%) translateY(-100%);
+    background: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    color: #fff;
+    padding: 4px 2px;
+    font-size: 12px;
+    min-width: 80px;
+    border-radius: 5px;
+    pointer-events: none;
+    padding: 4px 4px;
+    z-index: 99;
+    opacity: 0;
+    white-space: pre;
+}
+
+[tooltip-position='left']::after {
+    left: 0%;
+    top: 50%;
+    margin-left: -8px;
+    transform: translateX(-100%) translateY(-50%);
+}
+
+[tooltip-position='top']::after {
+    left: 50%;
+}
+
+[tooltip-position='buttom']::after {
+    top: 100%;
+    margin-top: 8px;
+    transform: translateX(-50%) translateY(0%);
+}
+
+[tooltip-position='right']::after {
+    left: 100%;
+    top: 50%;
+    margin-left: 8px;
+    transform: translateX(0%) translateY(-50%);
+}
+
+[tooltip]:hover::after,
+[tooltip]:hover::before {
+    opacity: 1
+}
+
+/*
+* Menu
+*/
+
+.navbar {
+    width: 100%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: bisque;
+    overflow: auto;
+    text-align: center;
+    position: relative;
+    >button{
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        border-radius: 10px;
+        background: transparent;
+      //  border: none;
+        cursor: pointer;
+        >img{
+            height: 35px;
+            width: 35px;
+            display: inline-block;
+            float: left;
+        }
+        >p{
+            display: inline-block;
+            float: left;
+        }
+    }
+    >input {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 10px;
+        margin: 20px;
+        position: absolute;
+        right: 10px;
+    }
+    >h2 {
+        display: inline-block;
+    }
+}
+
+/*
+* Heroes Section
+*/
+
+.heroesSection {
+    width: 100%; // min-height:100%;
+    text-align: center;
+    >div>div {
+        // width: 100%;
+        display: inline-block;
+        margin: auto;
+        overflow: auto;
+        width: 1025px;
+        overflow: hidden;
+        padding: 0px 65px;
+        >.thumbnaill {
+            .box-shadow(10px 10px 29px -5px rgba(0, 0, 0, 0.75));
+            width: 220px;
+            height: 275px;
+            margin: @topAndBottomMargin @marginBetweenThumbnails;
+            background-color: @thumbnaillBackgroundColor;
+            float: left;
+            position: relative;
+            >img {
+                width: 220px;
+                height: 220px;
+                object-fit: cover;
+            }
+            div {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                >img {
+                    height: 30px;
+                    width: 30px;
+                    cursor: pointer;
+                }
+            }
+            >.imageNotFound {
+                object-fit: unset;
+            }
+            >p {
+                .transform(translateX(-50%) translateY(-50%));
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                margin: 0;
+                padding: 0 10px;
+                position: absolute;
+                bottom: -145px;
+                left: 50%;
+                width: 200px;
+                >a {
+                    color: @heroNamesColor;
+                    position: relative;
+                    margin-bottom: 103px;
+                }
+            }
+        }
+        >.thumbnaill:first-of-type {
+            margin: @topAndBottomMargin @marginBetweenThumbnails @topAndBottomMargin auto;
+        }
+        >.thumbnaill:last-of-type {
+            margin: @topAndBottomMargin auto @topAndBottomMargin @marginBetweenThumbnails;
+        }
+    }
+}
+
+/*
+* Controll Pages Buttons
+*/
+
+.controll {
+    width: 100%;
+    text-align: center;
+    margin: 10px 0 50px 0;
+    >.controllButton {
+        margin: 10px;
+    }
+}
