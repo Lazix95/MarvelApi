@@ -37,11 +37,12 @@ function getApi(data = 0) {
 }
 
 function addEventListener() {
-    var buttons = document.getElementsByClassName("controllButton");
+    var buttons = document.getElementsByTagName("button");
     for (var i = 0; i < buttons.length; i++) {
-        buttons[i].addEventListener("click", function (e) {
+        buttons[i].addEventListener("click", function(e) {
             var page = (e.target.innerHTML - 1) * 20;
             arrayOfTgumnnails = [];
+            document.getElementById("js-controll").style.display = "none";
             document.getElementById("js-heroesSection").innerHTML = "";
             getApi(page);
         });
@@ -151,7 +152,6 @@ function browseAll(elem) {
 window.onload = function () {
     loadBookmarked();
     getApi();
-    addEventListener();
     history.pushState({
         page: 1
     }, "title 1", "?page=1");

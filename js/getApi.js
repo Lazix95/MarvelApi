@@ -8,13 +8,13 @@ var getSecnd = true;
 var imgAttr;
 var request = new XMLHttpRequest();
 request.onload = function () {
+    arrayOfTgumnnails = [];
     var data = JSON.parse(this.response);
     if (request.status >= 200 && request.status < 400) {
         document.getElementById('js-heroesSection').innerHTML = "";
         for (var i = 0; i < data.data.results.length; i++) {
             var src = data.data.results[i].thumbnail.path + ".jpg";
             imgAttr = checkImgNotAviable(src);
-            if (imgAttr) {
                 var thumbnail = {
                     "id": data.data.results[i].id,
                     "name": data.data.results[i].name,
@@ -24,13 +24,12 @@ request.onload = function () {
                     "url": data.data.results[i].urls[0].url
                 };
                 arrayOfTgumnnails.push(thumbnail);
-            } else {
-                pageLimit++;
-            }
         }
         template4x5();
+       document.getElementById("js-controll").style.display = "block";
         if (flagButtons){
             addButtons();
+            addEventListener();
             flagButtons=false;
         }
     } else {
