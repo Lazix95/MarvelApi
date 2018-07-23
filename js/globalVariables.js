@@ -8,6 +8,7 @@ var imgAttr;
 var flagButtons = true;
 var flag = false;
 var bookmarkedFlag = false;
+var rotationFlag = true;
 var bookmarkedHeroesId = [];
 var bookmarkedHeroesObj = [];
 var currentPage = 0; 

@@ -10,7 +10,7 @@ request.onload = function () {
             var thumbnail = {
                 "id": data.data.results[i].id,
                 "name": data.data.results[i].name,
-                "description": data.data.results[i].description,
+                "description": data.data.results[i].description ? data.data.results[i].description : "Description Not Available!!",
                 "src": src,
                 "imgAttr": imgAttr,
                 "url": data.data.results[i].urls[0].url

@@ -24,3 +24,37 @@ function getNotLoadedPics() {
     }
     requestNotLoaded.send();
 }
+
+function addAnimationListener() {
+    var thumbnails = document.getElementsByClassName("thumbnaill");
+    for (var i = 0; i < thumbnails.length; i++) {
+        thumbnails[i].addEventListener("click", function (e) {
+            if (isContainClass(e.target.parentNode, "thumbnaill")) {
+                if (!isContainClass(e.target.parentNode, "thumbnaillAnimation")) {
+                    e.target.parentNode.classList = "thumbnaill";
+                    e.target.parentNode.classList.add("thumbnaillAnimation");
+                    setTimeout(function () {
+                        e.target.parentNode.classList.add("thumbnaillDescription");
+                    }, 1000);
+                }
+            }
+        });
+    }
+}
+
+function addAnimationListenerReverse() {
+    var thumbnails = document.getElementsByClassName("thumbnaill");
+    for (var i = 0; i < thumbnails.length; i++) {
+        thumbnails[i].addEventListener("click", function (e) {
+            if (isContainClass(e.target.parentNode, "thumbnaill")) {
+                if (isContainClass(e.target.parentNode, "thumbnaillAnimation")) {
+                    exchangeClasses(e.target.parentNode, "thumbnaillAnimation", "thumbnaillAnimationReverse");
+                    setTimeout(function () {
+                        removeClass(e.target.parentNode, "thumbnaillDescription");
+                    }, 1000);
+
+                }
+            }
+        });
+    }
+}

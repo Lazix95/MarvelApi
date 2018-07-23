@@ -15,13 +15,15 @@ function search() {
     if (nameStartWith == "nameStartsWith=&") {
         getApi();
     } else if (value.length >= 3) {
+        trashHeroList();
         bookmarkButtonChangeBack();
         removeButtons();
         flagButtons = false;
         flag = true;
         request.open('GET', getApiString(nameStartWith), true);
         request.send();
-    } else if (value.length < 3 && flag) {
+    } else if (value.length < 3 && flag && value.length >= 2) {
+        trashHeroList();
         flagButtons = true;
         request.open('GET', getApiString(), true);
         request.send();
@@ -53,8 +55,8 @@ function browseAll(elem) {
 }
 
 // Correct page state number;
-function corectThePageState(){
-    if (history.state.page != 1){
+function corectThePageState() {
+    if (history.state.page != 1) {
         history.pushState({
             page: 1
         }, "title 1", "?page=1");
@@ -62,9 +64,48 @@ function corectThePageState(){
 }
 
 // initial Bookmarked heroes view;
-function viewBookmarkedHeroesSetting(){
+function viewBookmarkedHeroesSetting() {
     corectThePageState();
     viewYourBookmarkedHeroes(0);
+}
+
+function showDescription(elem) {
+    elem.classList = "thumbnaill";
+    elem.setAttribute("onclick","hideDescription(this)");
+    elem.classList.add("thumbnaillAnimation");
+    setTimeout(function () {
+        elem.classList.add("thumbnaillDescription");
+    }, 1000);
+}
+
+function hideDescription(elem) {
+    elem.setAttribute("onclick", "showDescription(this)");
+    exchangeClasses(elem, "thumbnaillAnimation", "thumbnaillAnimationReverse");
+    setTimeout(function () {
+        removeClass(elem, "thumbnaillDescription");
+    }, 1000);
+
+}
+
+
+
+
+
+function isContainClass(element, className) {
+    return (' ' + element.className + ' ').indexOf(' ' + className + ' ') > -1;
+
+}
+
+function exchangeClasses(elem, param1, param2) {
+    var classString = elem.getAttribute("class");
+    classString = classString.replace(param1, param2);
+    elem.setAttribute("class", classString);
+}
+
+function removeClass(elem, param) {
+    var classString = elem.getAttribute("class");
+    classString = classString.replace(param, "");
+    elem.setAttribute("class", classString);
 }
 
 // Start app when loaded;
@@ -76,5 +117,3 @@ window.onload = function () {
     }, "title 1", "?page=1");
 
 };
-
-  

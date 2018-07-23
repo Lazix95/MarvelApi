@@ -14,7 +14,7 @@ function template4x5() {
                     imgSrc = "./img/empty star.png";
                     toolTipText = "Bookmark";
                 }
-                var temp = '<div class="thumbnaill" ><img src="' + arrayOfThumbnails[j].src + '" alt="" data-img="' +
+                var temp = '<div class="thumbnaill" onclick="showDescription(this)" ><img src="' + arrayOfThumbnails[j].src + '" alt="" data-img="' +
                     arrayOfThumbnails[j].imgAttr + '" onerror="error(this)"><div tooltip="'+ toolTipText +' \n ' +
                     arrayOfThumbnails[j].name.split("(")[0] + '" tooltip-position="buttom"><img class="bookmark" onclick="bookmarkOrUnbookmark(this)" data-id="' +
                     arrayOfThumbnails[j].id + '" src="' + imgSrc + '"></div><p><a  tooltip="More details about \n ' +
@@ -52,13 +52,13 @@ function viewYourBookmarkedHeroes(k = 0) {
         var scndDiv = document.createElement("div");
         for (var j = (0 + k); j < (4 + k); j++) {
             if (bookmarkedHeroesObj[j]) {
-                var temp = '<div class="thumbnaill" ><img src="' + bookmarkedHeroesObj[j].src + '" alt="" data-img="' +
+                var temp = '<div class="thumbnaill"  onclick="showDescription(this)" ><img src="' + bookmarkedHeroesObj[j].src + '" alt="" data-img="' +
                     bookmarkedHeroesObj[j].imgAttr + '" onerror="error(this)"><div tooltip="'+ toolTipText +' \n ' +
                     bookmarkedHeroesObj[j].name.split("(")[0] + '" tooltip-position="buttom"><img class="bookmark" onclick="bookmarkOrUnbookmark(this)" data-id="' +
                     bookmarkedHeroesObj[j].id + '" src="' + imgSrc + '"></div><p><a  tooltip="More details about \n ' +
                     bookmarkedHeroesObj[j].name.split("(")[0] + ' on Marvel.com" tooltip-position="buttom" href="' +
                     bookmarkedHeroesObj[j].url + '" target="_blank">' +
-                    bookmarkedHeroesObj[j].name + '</a></p></div>';
+                    bookmarkedHeroesObj[j].name + '</a></p><p class="description">Description: ' + bookmarkedHeroesObj[j].description + '</p></div>';
                 div.innerHTML += temp;
                 var s = div.querySelectorAll('[data-img="image_not_available.jpg"]');
                 if (s[0] != null) {
