@@ -5,11 +5,49 @@ function addButtons(numbOfPage = NumberOfPages) {
         for (var i = 1; i <= numbOfPage; i++) {
             var button = document.createElement("button");
             button.classList.add("controllButton");
-            button.id="js-"+i+"";
+            button.id = "js-" + i + "";
             text = document.createTextNode(i);
             button.appendChild(text);
             elem.appendChild(button);
         }
+    }
+}
+
+function addSearchButtons() {
+    var elem = document.getElementById("js-controll");
+    var buttonForward = document.createElement("button");
+    var buttonBack = document.createElement("button");
+    var textForward;
+    var textBack;
+    buttonForward.classList.add("controllButton");
+    buttonBack.classList.add("controllButton");
+    buttonForward.id = "js-forward";
+    buttonBack.id = "js-Back";
+    textForward = document.createTextNode("Forward");
+    textBack = document.createTextNode("Back");
+    buttonForward.appendChild(textForward);
+    buttonBack.appendChild(textBack);
+    buttonForward.setAttribute("onclick","goForward()");
+    buttonBack.setAttribute("onclick","goBack()");
+    elem.appendChild(buttonBack);
+    elem.appendChild(buttonForward);
+}
+
+function goForward(){
+    if(document.getElementsByClassName("thumbnaill").length == 20){
+        offset += 20;
+        search();
+    }else{
+        alert("There is no forward!!");
+    }
+}
+
+function goBack(){
+    if(offset < 1){
+        alert("There is no back!!");
+    }else{
+        offset -= 20;
+        search();
     }
 }
 
@@ -18,11 +56,15 @@ function addEventListener(showBookmarked = false) {
     for (var i = 0; i < buttons.length; i++) {
         buttons[i].addEventListener("click", function (e) {
             var page = (e.target.innerHTML - 1) * 20;
-            history.pushState({page: e.target.innerHTML}, "title "+e.target.innerHTML+"", "?page="+e.target.innerHTML+"");
+            history.pushState({
+                page: e.target.innerHTML
+            }, "title " + e.target.innerHTML + "", "?page=" + e.target.innerHTML + "");
             if (!showBookmarked) {
                 removeButtons();
                 trashHeroList();
-                getApi(page);
+                //getApi(page);
+                offset = page;
+                search();
             } else {
                 currentPage = page;
                 viewYourBookmarkedHeroes(page);
@@ -47,7 +89,7 @@ function bookmarkOrUnbookmark(elem) {
             if (bookmarkedHeroesId.length <= currentPage) {
                 setpage = currentPage - 20;
             } else {
-                setpage =currentPage;
+                setpage = currentPage;
             }
             viewYourBookmarkedHeroes(setpage);
         }
@@ -67,7 +109,7 @@ function bookmarkOrUnbookmark(elem) {
     localStorage.setItem("bookmarkedHeroesObj", JSON.stringify(bookmarkedHeroesObj));
 }
 
-function bookmarkButtonChangeBack(){
+function bookmarkButtonChangeBack() {
     var elem = document.getElementById("js-bookmarkedHeroesButton");
     bookmarkedFlag = false;
     elem.innerHTML = '<img src="img/full star.png"><p>Veiw your bookmarked heroes!!</p>';

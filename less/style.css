@@ -104,16 +104,40 @@ a {
 /*
 * Menu
 */
-.navbar {
-  width: 100%;
+header {
+  height: 68px;
+  background-color: #ffe4c4;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  background-color: bisque;
+}
+header > h2 {
+  position: absolute;
+  z-index: 999;
+  transform: translateX(-50%);
+  left: 50%;
+}
+header > .navBurger {
+  position: absolute;
+  top: 5px;
+  right: 40px;
+  display: none;
+  padding: 10px 10px 20px 10px;
+}
+header > .navBurger > p {
+  font-size: 25px;
+  margin: 0;
+}
+header > .navbarHolder > .navbar {
+  width: 100%;
+  height: 68px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: #ffe4c4;
   overflow: auto;
   text-align: center;
   position: relative;
 }
-.navbar > button {
+header > .navbarHolder > .navbar > button {
   position: absolute;
   left: 10px;
   top: 10px;
@@ -121,15 +145,15 @@ a {
   background: transparent;
   cursor: pointer;
 }
-.navbar > button > img {
+header > .navbarHolder > .navbar > button > img {
   height: 35px;
   width: 35px;
   float: left;
 }
-.navbar > button > p {
+header > .navbarHolder > .navbar > button > p {
   float: left;
 }
-.navbar > input {
+header > .navbarHolder > .navbar > input {
   padding: 5px 10px;
   border: none;
   border-radius: 10px;
@@ -137,8 +161,60 @@ a {
   position: absolute;
   right: 10px;
 }
-.navbar > h2 {
+header > .navbarHolder > .navbar > h2 {
   display: inline-block;
+}
+@media screen and (max-width: 991px) {
+  header {
+    min-height: 68px;
+    text-align: center;
+    width: 100%;
+    overflow: hidden;
+    height: unset;
+  }
+  header > h2 {
+    position: unset;
+    z-index: unset;
+    transform: none;
+    left: unset;
+  }
+  header > .navBurger {
+    display: block;
+  }
+  header .navbarHolder {
+    width: 100%;
+    transition: all 1s;
+    max-height: 0;
+  }
+  header > .navBurger:hover ~ .navbarHolder,
+  header .navbarHolder:hover {
+    border-top: 1px solid rgba(201, 193, 193, 0.548);
+    max-height: 150px;
+  }
+}
+@media (max-width: 599px) {
+  header > h2 {
+    font-size: 18px;
+    margin: 25px 0;
+  }
+}
+@media screen and (max-width: 480px) {
+  header > h2 {
+    font-size: 15px;
+  }
+  header .navbarHolder > .navbar {
+    height: auto;
+  }
+  header .navbarHolder > .navbar > button {
+    position: unset;
+    display: block;
+    margin: 15px auto;
+  }
+  header .navbarHolder > .navbar > input {
+    position: unset;
+    display: block;
+    margin: 15px auto;
+  }
 }
 /*
 * Heroes Section
@@ -150,7 +226,10 @@ a {
 }
 .heroesSection > .loadingScreen {
   position: absolute;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  width: 400px;
+  height: 400px;
+  top: 300px;
 }
 .heroesSection > div > div {
   display: inline-block;
@@ -241,10 +320,10 @@ a {
   background: transparent;
 }
 .heroesSection > div > div .thumbnaillAnimation {
-  animation: rotateThumbnaill 2s;
+  animation: rotateThumbnaill 1.6s linear;
 }
 .heroesSection > div > div .thumbnaillAnimationReverse {
-  animation: rotateThumbnaillReverse 2s;
+  animation: rotateThumbnaillReverse 1.6s linear;
 }
 .heroesSection > div > div .thumbnaillDescription > .description {
   display: block;
@@ -277,6 +356,77 @@ a {
     transform: rotateY(0deg);
   }
 }
+@media screen and (max-width: 1199px) {
+  .heroesSection > div > div {
+    width: 940px;
+    padding: 0px 25px;
+  }
+  .heroesSection > div > div > .thumbnaill {
+    margin: 30px 10px;
+  }
+  .heroesSection > div > div > .thumbnaill:first-of-type {
+    margin: 30px 10px 30px auto;
+  }
+  .heroesSection > div > div > .thumbnaill:last-of-type {
+    margin: 30px auto 30px 10px;
+  }
+}
+@media screen and (max-width: 991px) {
+  .heroesSection {
+    position: relative;
+  }
+  .heroesSection > div > div {
+    width: 460px;
+    padding: 0px 25px;
+  }
+  .heroesSection > div > div > .thumbnaill:first-of-type {
+    margin: 30px 10px 30px auto;
+  }
+  .heroesSection > div > div > .thumbnaill:nth-of-type(3) {
+    margin: 30px 10px 30px auto;
+  }
+  .heroesSection > div > div > .thumbnaill:nth-of-type(2) {
+    margin: 30px 0px 30px 10px;
+  }
+  .heroesSection > div > div > .thumbnaill:last-of-type {
+    margin: 30px auto 30px 10px;
+  }
+  .heroesSection > .loadingScreen {
+    width: 250px;
+    height: 250px;
+    top: 200px;
+    left: 50%;
+  }
+}
+@media screen and (max-width: 559px) {
+  .heroesSection > div > div {
+    width: 450px;
+    padding: 0px 14px;
+  }
+  .heroesSection > div > div > .thumbnaill {
+    -webkit-box-shadow: 3px 14px 29px -5px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 3px 14px 29px -5px rgba(0, 0, 0, 0.75);
+    box-shadow: 3px 14px 29px -5px rgba(0, 0, 0, 0.75);
+  }
+  .heroesSection > div > div > .thumbnaill:first-of-type {
+    margin: 30px 5px 30px auto;
+  }
+  .heroesSection > div > div > .thumbnaill:nth-of-type(3) {
+    margin: 30px 5px 30px auto;
+  }
+  .heroesSection > div > div > .thumbnaill:nth-of-type(2) {
+    margin: 30px 0px 30px 5px;
+  }
+  .heroesSection > div > div > .thumbnaill:last-of-type {
+    margin: 30px auto 30px 5px;
+  }
+}
+@media screen and (max-width: 559px) and (max-width: 479px) {
+  .heroesSection > div > div {
+    width: 220px;
+    padding: 0px 30px;
+  }
+}
 /*
 * Controll Pages Buttons
 */
@@ -295,4 +445,13 @@ a {
 .controll > .active {
   background-color: #28a745;
   border-color: #28a745;
+}
+/*
+/ Canvas
+*/
+.canvas {
+  position: fixed;
+  top: 0;
+  display: block;
+  z-index: -1;
 }

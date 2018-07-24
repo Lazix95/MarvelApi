@@ -8,30 +8,36 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" type="text/css" href="less/style.css" />
-
 </head>
 
 <body>
     <header>
-        <nav class="navbar">
-            <button onclick="viewBookmarkedHeroesSetting()" id="js-bookmarkedHeroesButton">
-                <img src="img/full star.png">
-                <p>Veiw your bookmarked heroes!!</p>
-            </button>
-            <h2>Bookmark Your Favorite Heroes!!</h2>
-            <input type="text" placeholder="Search Heroes!" id="js-search" value="" oninput="search()">
-        </nav>
+        <h2>Bookmark Your Favorite Heroes!!</h2>
+        <div class="navBurger">
+            <p>&#9776</p>
+        </div>
+        <div class="navbarHolder">
+            <nav class="navbar">
+                <button onclick="viewBookmarkedHeroesSetting()" id="js-bookmarkedHeroesButton">
+                    <img src="img/full star.png">
+                    <p>Veiw your bookmarked heroes!!</p>
+                </button>
+                <input type="text" placeholder="Search Heroes!" id="js-search" value="" oninput="search()">
+            </nav>
+        </div>
     </header>
     <section class="heroesSection" id="js-heroesSection">
     </section>
     <div class="controll" id="js-controll">
-
     </div>
+    <canvas class="canvas" id="js-canvas"></canvas>
+    <script src="js/canvas.js"></script>
     <script src="js/globalVariables.js"></script>
     <script src="js/getApi.js"></script>
     <script src="js/objects.js"></script>
     <script src="js/templates.js"></script>
     <script src="js/buttonControll.js"></script>
+    
 </body>
 
 </html>

@@ -6,7 +6,7 @@ request.onload = function () {
         trashHeroList();
         for (var i = 0; i < data.data.results.length; i++) {
             var src = data.data.results[i].thumbnail.path + ".jpg";
-            imgAttr = checkImgNotAviable(src);
+            var imgAttr = checkImgNotAviable(src);
             var thumbnail = {
                 "id": data.data.results[i].id,
                 "name": data.data.results[i].name,
@@ -18,7 +18,7 @@ request.onload = function () {
             arrayOfThumbnails.push(thumbnail);
         }
         template4x5();
-        if (flagButtons) {
+        if (false) {
             addButtons();
             addEventListener();
             flagButtons = false;
@@ -38,8 +38,9 @@ request.onloadstart = function(){
 
 // Point page button when api loaded;
 request.onloadend = function () {
-    if (document.getElementsByClassName("controllButton").length>0) {
-        var buttonID = "js-" + history.state.page + "";
-        document.getElementById(buttonID).classList.add("active");
-    }
+    addSearchButtons();
+ //   if (document.getElementsByClassName("controllButton").length>0) {
+  //      var buttonID = "js-" + history.state.page + "";
+   //     document.getElementById(buttonID).classList.add("active");
+   // }
 };

@@ -36,6 +36,7 @@ function template4x5() {
     }
 }
 
+
 function viewYourBookmarkedHeroes(k = 0) {
     k = parseInt(k);
     removeButtons();
@@ -46,7 +47,6 @@ function viewYourBookmarkedHeroes(k = 0) {
     elem.setAttribute("onclick", "browseAll(this)");
     var imgSrc = "./img/full star.png";
     var toolTipText = "Unbookmark";
-    
     for (var i = 0; i < 5; i++) {
         var div = document.createElement("div");
         var scndDiv = document.createElement("div");

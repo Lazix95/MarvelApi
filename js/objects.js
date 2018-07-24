@@ -13,21 +13,21 @@ function search() {
     var value = document.getElementById("js-search").value;
     var nameStartWith = "nameStartsWith=" + value + "&";
     if (nameStartWith == "nameStartsWith=&") {
-        getApi();
-    } else if (value.length >= 3) {
+        trashHeroList();
+        viewBookmarkedHeroesSetting();
+    } else if (value.length >= 1) {
         trashHeroList();
         bookmarkButtonChangeBack();
         removeButtons();
-        flagButtons = false;
         flag = true;
+        flagButtons = false;
         request.open('GET', getApiString(nameStartWith), true);
         request.send();
-    } else if (value.length < 3 && flag && value.length >= 2) {
-        trashHeroList();
-        flagButtons = true;
-        request.open('GET', getApiString(), true);
-        request.send();
-    }
+    }// else if (value.length < 3 && flag && value.length >= 2) {
+       // trashHeroList();
+      //  flagButtons = true;
+      // viewBookmarkedHeroesSetting();
+   // }
 }
 
 // Initial Api request;
@@ -65,31 +65,40 @@ function corectThePageState() {
 
 // initial Bookmarked heroes view;
 function viewBookmarkedHeroesSetting() {
+    document.getElementById("js-search").value = "";
     corectThePageState();
     viewYourBookmarkedHeroes(0);
 }
 
 function showDescription(elem) {
-    elem.classList = "thumbnaill";
-    elem.setAttribute("onclick","hideDescription(this)");
-    elem.classList.add("thumbnaillAnimation");
-    setTimeout(function () {
-        elem.classList.add("thumbnaillDescription");
-    }, 1000);
+    if (!array.includes(elem) && event.target.className != "bookmark") {
+        array.push(elem);
+        elem.classList = "thumbnaill";
+        elem.classList.add("thumbnaillAnimation");
+        setTimeout(function () {
+            elem.classList.add("thumbnaillDescription");
+        }, 800);
+        setTimeout(function () {
+            elem.setAttribute("onclick", "hideDescription(this)");
+        }, 1600);
+    }
 }
 
-function hideDescription(elem) {
-    elem.setAttribute("onclick", "showDescription(this)");
-    exchangeClasses(elem, "thumbnaillAnimation", "thumbnaillAnimationReverse");
-    setTimeout(function () {
-        removeClass(elem, "thumbnaillDescription");
-    }, 1000);
-
+function hideDescription(e) {
+    if (event.target.className != "bookmark") {
+        var index = array.indexOf(e);
+        if (index > -1) {
+            array.splice(index, 1);
+            exchangeClasses(e, "thumbnaillAnimation", "thumbnaillAnimationReverse");
+            setTimeout(function () {
+                removeClass(e, "thumbnaillDescription");
+            }, 800);
+            setTimeout(function () {
+                e.setAttribute("onclick", "showDescription(this)");
+            }, 1600);
+        }
+    }
 }
-
-
-
-
 
 function isContainClass(element, className) {
     return (' ' + element.className + ' ').indexOf(' ' + className + ' ') > -1;
@@ -111,9 +120,9 @@ function removeClass(elem, param) {
 // Start app when loaded;
 window.onload = function () {
     loadBookmarked();
-    getApi();
+    viewBookmarkedHeroesSetting();
     history.pushState({
         page: 1
     }, "title 1", "?page=1");
-
 };
+
