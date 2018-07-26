@@ -215,6 +215,27 @@ header > .navbarHolder > .navbar > h2 {
     display: block;
     margin: 15px auto;
   }
+  header > .navBurger {
+    right: 20px;
+  }
+}
+@media screen and (max-width: 399px) {
+  header > h2 {
+    font-size: 12px;
+  }
+  header .navbarHolder > .navbar {
+    height: auto;
+  }
+  header .navbarHolder > .navbar > button {
+    position: unset;
+    display: block;
+    margin: 15px auto;
+  }
+  header .navbarHolder > .navbar > input {
+    position: unset;
+    display: block;
+    margin: 15px auto;
+  }
 }
 /*
 * Heroes Section
@@ -325,6 +346,9 @@ header > .navbarHolder > .navbar > h2 {
 .heroesSection > div > div .thumbnaillAnimationReverse {
   animation: rotateThumbnaillReverse 1.6s linear;
 }
+.heroesSection > div > div .tumbnailStopAnimation {
+  animation-duration: 0s;
+}
 .heroesSection > div > div .thumbnaillDescription > .description {
   display: block;
 }
@@ -333,6 +357,9 @@ header > .navbarHolder > .navbar > h2 {
 }
 .heroesSection > div > div > .thumbnaill:last-of-type {
   margin: 30px auto 30px 20px;
+}
+.heroesSection > div > div > .thumbnaill:only-child {
+  margin: 30px 20px 30px auto;
 }
 @keyframes rotateThumbnaill {
   from {
@@ -441,6 +468,10 @@ header > .navbarHolder > .navbar > h2 {
   color: #fff;
   background-color: #007bff;
   border-color: #007bff;
+}
+.controll .buttonDisabled {
+  background-color: #737579;
+  border-color: #737579;
 }
 .controll > .active {
   background-color: #28a745;

@@ -14,11 +14,12 @@ window.addEventListener('fullscreenchange', resizeCanvas, false);
 
 // Resize canvas width
 function resizeCanvas() {
-    var width = canvas.width = window.innerWidth;
+    width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
     drawStuff();
     setTimeout(function (){
         var width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
         drawStuff();
     }, 100);
 }
@@ -28,22 +29,19 @@ function scrollOnCanvas() {
         drawStuff();
 }
 
+// clear canvas
 function clearCanvas(){
     context.clearRect(0, 0, canvas.width, canvas.height);
 }
 
+// Draw image
 function drawStuff(){
     context.clearRect(0, 0, canvas.width, canvas.height);
-   // imageObj.onload = function() {
-   // context.globalAlpha = 0.7;
-  //  context.drawImage(imageObj, 50, height / 2 - imageObj.height/2 , width - 100 , 200 );
-  //  };
     context.globalAlpha = 0.7;
     context.drawImage(imageObj, 50, height / 3 , width - 100 , (width - 100) /4.474 );
 }
 
-
-
+// Draw image first time
 imageObj.onload = function(){
     drawStuff();
-}
+};

@@ -18,11 +18,11 @@
         </div>
         <div class="navbarHolder">
             <nav class="navbar">
-                <button onclick="viewBookmarkedHeroesSetting()" id="js-bookmarkedHeroesButton">
-                    <img src="img/full star.png">
-                    <p>Veiw your bookmarked heroes!!</p>
+                <button onclick="browseAll(this)" id="js-bookmarkedHeroesButton">
+                    <img src="./img/full star.png"><img src="./img/empty star.png">
+                    <p>Browse All Heroes!!</p>
                 </button>
-                <input type="text" placeholder="Search Heroes!" id="js-search" value="" oninput="search()">
+                <input type="text" placeholder="Search Heroes!" id="js-search" value="" oninput="delaySearch()" onfocus="resetOffset()">
             </nav>
         </div>
     </header>
@@ -32,6 +32,7 @@
     </div>
     <canvas class="canvas" id="js-canvas"></canvas>
     <script src="js/canvas.js"></script>
+    <script src="js/bookmarkFunctions.js"></script>
     <script src="js/globalVariables.js"></script>
     <script src="js/getApi.js"></script>
     <script src="js/objects.js"></script>

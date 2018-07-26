@@ -10,6 +10,5 @@ var bookmarkedFlag = false;
 var bookmarkedHeroesId = [];
 var bookmarkedHeroesObj = [];
 var currentPage = 0; 
-var templateArray = [];
 var k = 0;
 var array=[];

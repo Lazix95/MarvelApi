@@ -1,6 +1,10 @@
+
 // Query api from Marvel.com;
 var request = new XMLHttpRequest();
 request.onload = function () {
+    if (offset == 0){
+        resetPageState();
+    }
     var data = JSON.parse(this.response);
     if (request.status >= 200 && request.status < 400) {
         trashHeroList();
@@ -18,29 +22,25 @@ request.onload = function () {
             arrayOfThumbnails.push(thumbnail);
         }
         template4x5();
-        if (false) {
-            addButtons();
-            addEventListener();
-            flagButtons = false;
-        }
     } else {
         console.log('error');
     }
 };
 
+// Set loading screen
 request.onloadstart = function(){
     var img = document.createElement("img");
     img.src = "./img/loading.gif";
     img.classList.add("loadingScreen");
     document.getElementById("js-heroesSection").appendChild(img);
 
-}
-
-// Point page button when api loaded;
-request.onloadend = function () {
-    addSearchButtons();
- //   if (document.getElementsByClassName("controllButton").length>0) {
-  //      var buttonID = "js-" + history.state.page + "";
-   //     document.getElementById(buttonID).classList.add("active");
-   // }
 };
+
+// Add back and forward buttons
+request.onloadend = function () {
+    if (document.getElementById("js-controll").childNodes.length<2){
+        addSearchButtons();
+    }
+};
+
+
