@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" type="text/css" href="less/style.css" />
+</head>
+
+<body>
+    <header>
+        <h2>Bookmark Your Favorite Heroes!!</h2>
+        <div class="navBurger">
+            <p>&#9776</p>
+        </div>
+        <div class="navbarHolder">
+            <nav class="navbar">
+                <button onclick="browseAll(this)" id="js-bookmarkedHeroesButton">
+                    <img src="./img/full star.png"><img src="./img/empty star.png">
+                    <p>Browse All Heroes!!</p>
+                </button>
+                <input type="text" placeholder="Search Heroes!" id="js-search" value="" oninput="delaySearch()" onfocus="resetOffset()">
+            </nav>
+        </div>
+    </header>
+    <section class="heroesSection" id="js-heroesSection">
+    </section>
+    <div class="controll" id="js-controll">
+    </div>
+    <canvas class="canvas" id="js-canvas"></canvas>
+    <script src="js/canvas.js"></script>
+    <script src="js/bookmarkFunctions.js"></script>
+    <script src="js/globalVariables.js"></script>
+    <script src="js/getApi.js"></script>
+    <script src="js/objects.js"></script>
+    <script src="js/templates.js"></script>
+    <script src="js/buttonControll.js"></script>
+    
+</body>
+
+</html>

@@ -1,0 +1,488 @@
+/*
+* Variables
+*/
+/*
+* Mixins
+*/
+/*
+* Global changes and special classes
+*/
+body {
+  margin: 0;
+  font-family: Arial;
+}
+body,
+html {
+  min-height: 100%;
+}
+a {
+  text-decoration: none;
+}
+/*
+* My Custom Tooltip
+*/
+[tooltip] {
+  margin: 0 0 40px 0;
+  position: relative;
+  display: inline-block;
+}
+[tooltip]::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 4px 6px 0 6px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.7) transparent transparent transparent;
+  z-index: 99;
+  opacity: 0;
+}
+[tooltip-position='left']::before {
+  left: 0%;
+  top: 50%;
+  margin-left: -12px;
+  transform: translatey(-50%) rotate(-90deg);
+}
+[tooltip-position='top']::before {
+  left: 50%;
+}
+[tooltip-position='buttom']::before {
+  top: 100%;
+  margin-top: 8px;
+  transform: translateX(-50%) translatey(-100%) rotate(-180deg);
+}
+[tooltip-position='right']::before {
+  left: 100%;
+  top: 50%;
+  margin-left: 1px;
+  transform: translatey(-50%) rotate(90deg);
+}
+[tooltip]::after {
+  content: attr(tooltip);
+  position: absolute;
+  left: 50%;
+  top: -6px;
+  transform: translateX(-50%) translateY(-100%);
+  background: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  color: #fff;
+  padding: 4px 2px;
+  font-size: 12px;
+  min-width: 80px;
+  border-radius: 5px;
+  pointer-events: none;
+  padding: 4px 4px;
+  z-index: 99;
+  opacity: 0;
+  white-space: pre;
+}
+[tooltip-position='left']::after {
+  left: 0%;
+  top: 50%;
+  margin-left: -8px;
+  transform: translateX(-100%) translateY(-50%);
+}
+[tooltip-position='top']::after {
+  left: 50%;
+}
+[tooltip-position='buttom']::after {
+  top: 100%;
+  margin-top: 8px;
+  transform: translateX(-50%) translateY(0%);
+}
+[tooltip-position='right']::after {
+  left: 100%;
+  top: 50%;
+  margin-left: 8px;
+  transform: translateX(0%) translateY(-50%);
+}
+[tooltip]:hover::after,
+[tooltip]:hover::before {
+  opacity: 1;
+}
+/*
+* Menu
+*/
+header {
+  height: 68px;
+  background-color: #ffe4c4;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+header > h2 {
+  position: absolute;
+  z-index: 999;
+  transform: translateX(-50%);
+  left: 50%;
+}
+header > .navBurger {
+  position: absolute;
+  top: 5px;
+  right: 40px;
+  display: none;
+  padding: 10px 10px 20px 10px;
+}
+header > .navBurger > p {
+  font-size: 25px;
+  margin: 0;
+}
+header > .navbarHolder > .navbar {
+  width: 100%;
+  height: 68px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: #ffe4c4;
+  overflow: auto;
+  text-align: center;
+  position: relative;
+}
+header > .navbarHolder > .navbar > button {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  border-radius: 10px;
+  background: transparent;
+  cursor: pointer;
+}
+header > .navbarHolder > .navbar > button > img {
+  height: 35px;
+  width: 35px;
+  float: left;
+}
+header > .navbarHolder > .navbar > button > p {
+  float: left;
+}
+header > .navbarHolder > .navbar > input {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 10px;
+  margin: 20px;
+  position: absolute;
+  right: 10px;
+}
+header > .navbarHolder > .navbar > h2 {
+  display: inline-block;
+}
+@media screen and (max-width: 991px) {
+  header {
+    min-height: 68px;
+    text-align: center;
+    width: 100%;
+    overflow: hidden;
+    height: unset;
+  }
+  header > h2 {
+    position: unset;
+    z-index: unset;
+    transform: none;
+    left: unset;
+  }
+  header > .navBurger {
+    display: block;
+  }
+  header .navbarHolder {
+    width: 100%;
+    transition: all 1s;
+    max-height: 0;
+  }
+  header > .navBurger:hover ~ .navbarHolder,
+  header .navbarHolder:hover {
+    border-top: 1px solid rgba(201, 193, 193, 0.548);
+    max-height: 150px;
+  }
+}
+@media (max-width: 599px) {
+  header > h2 {
+    font-size: 18px;
+    margin: 25px 0;
+  }
+}
+@media screen and (max-width: 480px) {
+  header > h2 {
+    font-size: 15px;
+  }
+  header .navbarHolder > .navbar {
+    height: auto;
+  }
+  header .navbarHolder > .navbar > button {
+    position: unset;
+    display: block;
+    margin: 15px auto;
+  }
+  header .navbarHolder > .navbar > input {
+    position: unset;
+    display: block;
+    margin: 15px auto;
+  }
+  header > .navBurger {
+    right: 20px;
+  }
+}
+@media screen and (max-width: 399px) {
+  header > h2 {
+    font-size: 12px;
+  }
+  header .navbarHolder > .navbar {
+    height: auto;
+  }
+  header .navbarHolder > .navbar > button {
+    position: unset;
+    display: block;
+    margin: 15px auto;
+  }
+  header .navbarHolder > .navbar > input {
+    position: unset;
+    display: block;
+    margin: 15px auto;
+  }
+}
+/*
+* Heroes Section
+*/
+.heroesSection {
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+.heroesSection > .loadingScreen {
+  position: absolute;
+  transform: translateX(-50%) translateY(-50%);
+  width: 400px;
+  height: 400px;
+  top: 300px;
+}
+.heroesSection > div > div {
+  display: inline-block;
+  margin: auto;
+  overflow: auto;
+  width: 1025px;
+  overflow: hidden;
+  padding: 0px 65px;
+}
+.heroesSection > div > div > .thumbnaill {
+  -webkit-box-shadow: 10px 10px 29px -5px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 29px -5px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 29px -5px rgba(0, 0, 0, 0.75);
+  width: 220px;
+  height: 275px;
+  margin: 30px 20px;
+  background-color: #7fffd4;
+  float: left;
+  position: relative;
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+}
+.heroesSection > div > div > .thumbnaill > img {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+}
+.heroesSection > div > div > .thumbnaill div {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+}
+.heroesSection > div > div > .thumbnaill div > img {
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+.heroesSection > div > div > .thumbnaill > .imageNotFound {
+  object-fit: unset;
+}
+.heroesSection > div > div > .thumbnaill > p {
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -o-transform: translateX(-50%) translateY(-50%);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 0;
+  padding: 0 10px;
+  position: absolute;
+  bottom: -145px;
+  left: 50%;
+  width: 200px;
+}
+.heroesSection > div > div > .thumbnaill > p > a {
+  color: #000000;
+  position: relative;
+  margin-bottom: 103px;
+}
+.heroesSection > div > div > .thumbnaill > .description {
+  position: absolute;
+  top: 138px;
+  z-index: 1;
+  white-space: normal;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 34px 5%;
+  width: 90%;
+  height: 206px;
+  overflow-y: auto;
+  display: none;
+}
+.heroesSection > div > div > .thumbnaill .description::-webkit-scrollbar {
+  width: 5px;
+}
+.heroesSection > div > div > .thumbnaill .description::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+.heroesSection > div > div > .thumbnaill .description::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 10px;
+}
+.heroesSection > div > div > .thumbnaill .description::-webkit-scrollbar-thumb:hover {
+  background: transparent;
+}
+.heroesSection > div > div .thumbnaillAnimation {
+  animation: rotateThumbnaill 1.6s linear;
+}
+.heroesSection > div > div .thumbnaillAnimationReverse {
+  animation: rotateThumbnaillReverse 1.6s linear;
+}
+.heroesSection > div > div .tumbnailStopAnimation {
+  animation-duration: 0s;
+}
+.heroesSection > div > div .thumbnaillDescription > .description {
+  display: block;
+}
+.heroesSection > div > div > .thumbnaill:first-of-type {
+  margin: 30px 20px 30px auto;
+}
+.heroesSection > div > div > .thumbnaill:last-of-type {
+  margin: 30px auto 30px 20px;
+}
+.heroesSection > div > div > .thumbnaill:only-child {
+  margin: 30px 20px 30px auto;
+}
+@keyframes rotateThumbnaill {
+  from {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(90deg);
+  }
+  to {
+    transform: rotateY(0deg);
+  }
+}
+@keyframes rotateThumbnaillReverse {
+  from {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(-90deg);
+  }
+  to {
+    transform: rotateY(0deg);
+  }
+}
+@media screen and (max-width: 1199px) {
+  .heroesSection > div > div {
+    width: 940px;
+    padding: 0px 25px;
+  }
+  .heroesSection > div > div > .thumbnaill {
+    margin: 30px 10px;
+  }
+  .heroesSection > div > div > .thumbnaill:first-of-type {
+    margin: 30px 10px 30px auto;
+  }
+  .heroesSection > div > div > .thumbnaill:last-of-type {
+    margin: 30px auto 30px 10px;
+  }
+}
+@media screen and (max-width: 991px) {
+  .heroesSection {
+    position: relative;
+  }
+  .heroesSection > div > div {
+    width: 460px;
+    padding: 0px 25px;
+  }
+  .heroesSection > div > div > .thumbnaill:first-of-type {
+    margin: 30px 10px 30px auto;
+  }
+  .heroesSection > div > div > .thumbnaill:nth-of-type(3) {
+    margin: 30px 10px 30px auto;
+  }
+  .heroesSection > div > div > .thumbnaill:nth-of-type(2) {
+    margin: 30px 0px 30px 10px;
+  }
+  .heroesSection > div > div > .thumbnaill:last-of-type {
+    margin: 30px auto 30px 10px;
+  }
+  .heroesSection > .loadingScreen {
+    width: 250px;
+    height: 250px;
+    top: 200px;
+    left: 50%;
+  }
+}
+@media screen and (max-width: 559px) {
+  .heroesSection > div > div {
+    width: 450px;
+    padding: 0px 14px;
+  }
+  .heroesSection > div > div > .thumbnaill {
+    -webkit-box-shadow: 3px 14px 29px -5px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 3px 14px 29px -5px rgba(0, 0, 0, 0.75);
+    box-shadow: 3px 14px 29px -5px rgba(0, 0, 0, 0.75);
+  }
+  .heroesSection > div > div > .thumbnaill:first-of-type {
+    margin: 30px 5px 30px auto;
+  }
+  .heroesSection > div > div > .thumbnaill:nth-of-type(3) {
+    margin: 30px 5px 30px auto;
+  }
+  .heroesSection > div > div > .thumbnaill:nth-of-type(2) {
+    margin: 30px 0px 30px 5px;
+  }
+  .heroesSection > div > div > .thumbnaill:last-of-type {
+    margin: 30px auto 30px 5px;
+  }
+}
+@media screen and (max-width: 559px) and (max-width: 479px) {
+  .heroesSection > div > div {
+    width: 220px;
+    padding: 0px 30px;
+  }
+}
+/*
+* Controll Pages Buttons
+*/
+.controll {
+  width: 100%;
+  text-align: center;
+  margin: 10px 0 50px 0;
+}
+.controll > .controllButton {
+  margin: 10px;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+.controll .buttonDisabled {
+  background-color: #737579;
+  border-color: #737579;
+}
+.controll > .active {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+/*
+/ Canvas
+*/
+.canvas {
+  position: fixed;
+  top: 0;
+  display: block;
+  z-index: -1;
+}
